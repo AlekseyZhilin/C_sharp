@@ -65,19 +65,29 @@ if (elem !=0)
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,7; 5,7; 3,7; 3.
 
-double[] ColumnMean(){
-    double[] meanArray = new double[myMatrix.GetLength(1)];
-    for (int i=0; i < myMatrix.GetLength(0); i++){
-        for (int j=0; j < myMatrix.GetLength(1); j++) 
-            meanArray[j] += (myMatrix[i, j]);
+int[,] CreateIntMatrix(int row, int column){
+    int[,] matrix = new int[row, column];
+    for (int i=0; i < row; i++){
+        for(int j=0; j < column; j++)
+            matrix[i, j] = Random.Shared.Next(1, 100);
     }
 
-    int countInColumns = myMatrix.GetLength(0);
-    for (int i=0; i < myMatrix.GetLength(1); i++)
+    return matrix;
+}
+
+double[] ColumnMean(int[,] matrix){
+    double[] meanArray = new double[matrix.GetLength(1)];
+    for (int i=0; i < matrix.GetLength(0); i++){
+        for (int j=0; j < matrix.GetLength(1); j++) 
+            meanArray[j] += (matrix[i, j]);
+    }
+
+    int countInColumns = matrix.GetLength(0);
+    for (int i=0; i < matrix.GetLength(1); i++)
         meanArray[i] = Math.Round(meanArray[i] / countInColumns, 2);
 
     return meanArray;
 }
 
 Console.WriteLine("Среднее арифметическое по столбцам:");
-Console.WriteLine(string.Join(", ", ColumnMean()));
+Console.WriteLine(string.Join(", ", ColumnMean(CreateIntMatrix(2, 3))));
