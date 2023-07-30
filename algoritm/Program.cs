@@ -51,7 +51,7 @@ int BinSearch(int findeNumber, int boundNumber){
 
     while (true){
         curIteration++;
-        halfNumber = (firstNumber + secondNumber) / 2;
+        halfNumber = Convert.ToInt32((firstNumber + secondNumber) / 2.0);
 
         if (halfNumber == findeNumber)
             break;
@@ -68,11 +68,18 @@ if (findeNumber < boundNumber)
     Console.WriteLine($"Искомое число - {BinSearch(findeNumber, boundNumber)}");
 
 Console.WriteLine();
-for (int i = 1; i < 10; i++)
+for (int i = 0; i <= 10; i++)
     Console.WriteLine($"Искомое число - {BinSearch(i, 10)}");
 
 /*
---Линейно-логарифмический
+--Линейно-логарифмический---
+быстрая сортировка
 сложность О(n * log2(n))
 
+*/
+
+/*
+---Кубический ---
+
+сложность О(n^3)
 */
